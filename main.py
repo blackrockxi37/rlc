@@ -11,18 +11,18 @@ def _ (message):
     user_id = message.chat.id
     command = message.text.strip()
     if user_id != rockxi:
-        bot.send_message(user_id, "Пошел нахуй, даун")
+        bot.send_message(user_id, "Кря.")
         return
 
     try:
+        if 'cd' in command:
+                os.chdir(command.split()[1])
+                out = sm(use_command('pwd'))
+                return
         result = use_command(command)
         sm(result)
     except Exception as e:
         try:
-            if 'cd' in command:
-                os.chdir(command.split()[1])
-                out = sm(use_command('pwd'))
-                return
             os.system(command)
             out = os.popen(command).read()
             if not out:
