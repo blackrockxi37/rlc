@@ -32,6 +32,7 @@ def _ (message):
             lsList = use_command('ls')
             print(f'"{mkvname}"', lsList, type(lsList))
             if mkvname not in lsList: sm('File not found.'); return
+            print(f'"{mkvname}"')
             f = open(mkvname, 'rb')
             bot.send_document(rockxi, f, timeout=200)
             return
