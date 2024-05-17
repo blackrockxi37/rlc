@@ -21,11 +21,10 @@ def _ (message):
                 out = sm(use_command('pwd'))
                 return
         if 'wwwatch' in command:
-            split = command.split()
-            if len(split) < 2: sm('watch <имя файла.mkv>'); return 
-            if '.mkv' not in ' '.join(split[1:]): sm('watch <имя файла.mkv>'); return 
-            mkvname = ' '.join(split[1:])
+            mkvname = command.replace('wwwatch ', '')
+            if len(command) < 1 or '.mkv' not in mkvname: sm('watch <имя файла.mkv>'); return 
             lsList = use_command('ls')
+            print(f'"{mkvname}"', lsList, type(lsList))
             if mkvname not in lsList: sm('File not found.'); return
             f = open(mkvname, 'rb')
             bot.send_document(rockxi, f, timeout=200)
