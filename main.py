@@ -20,18 +20,20 @@ def _ (message):
                 os.chdir(command.split()[1])
                 out = sm(use_command('pwd'))
                 return
-        result = use_command(command)
-        sm(result)
-        if 'watch' in command:
+        if 'wwwatch' in command:
             split = command.split()
             if len(split) < 2: sm('watch <имя файла.mkv>'); return 
             if '.mkv' not in split[1]: sm('watch <имя файла.mkv>'); return 
-            mkvname = split[1]
+            mkvname = ' '.join(split[1:])
             lsList = use_command('ls')
             if mkvname not in lsList: sm('File not found.'); return
             f = open(mkvname, 'rb')
             bot.send_document(rockxi, f, timeout=200)
             return
+        result = use_command(command)
+        sm(result)
+        print(command)
+        
 
 
     except Exception as e:
