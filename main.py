@@ -22,13 +22,14 @@ def _ (message):
                 os.chdir(path)
                 out = sm(use_command('pwd'))
                 return
-        if 'wwwatch' in command:
-            mkvname = command.replace('wwwatch ', '')
-            if mkvname == 'wwwatch' or mkvname == '':
+        sendme = 'sendme'
+        if 'sendme' in command:
+            mkvname = command.replace(f'{sendme} ', '')
+            if mkvname == sendme or mkvname == '':
                 result = use_command('ls | grep .mkv')
                 sm(result)
                 return 
-            if '.mkv' not in mkvname: sm('watch <имя файла.mkv>'); return 
+            if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return 
             lsList = use_command('ls')
             print(f'"{mkvname}"', lsList, type(lsList))
             if mkvname not in lsList: sm('File not found.'); return
