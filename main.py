@@ -24,7 +24,11 @@ def _ (message):
                 return
         if 'wwwatch' in command:
             mkvname = command.replace('wwwatch ', '')
-            if len(command) < 1 or '.mkv' not in mkvname: sm('watch <имя файла.mkv>'); return 
+            if mkvname == 'wwwatch' or mkvname == '':
+                result = use_command('ls | grep .mkv')
+                sm(result)
+                return 
+            if '.mkv' not in mkvname: sm('watch <имя файла.mkv>'); return 
             lsList = use_command('ls')
             print(f'"{mkvname}"', lsList, type(lsList))
             if mkvname not in lsList: sm('File not found.'); return
