@@ -10,6 +10,7 @@ bot = telebot.TeleBot(bot_token)
 def _ (message):
     user_id = message.chat.id
     command = message.text.strip()
+    
     if user_id != rockxi:
         bot.send_message(user_id, "Кря.")
         return
@@ -21,6 +22,18 @@ def _ (message):
                 return
         result = use_command(command)
         sm(result)
+        if 'watch' in command:
+            split = command.split()
+            if len(split) < 2: sm('watch <имя файла.mkv>'); return 
+            if '.mkv' not in split[1]: sm('watch <имя файла.mkv>'); return 
+            mkvname = split[1]
+            lsList = use_command('ls')
+            if mkvname not in lsList: sm('File not found.'); return
+            f = open(mkvname, 'rb')
+            bot.send_document(rockxi, f, timeout=200)
+            return
+
+
     except Exception as e:
         try:
             os.system(command)
@@ -33,6 +46,7 @@ def _ (message):
             sm(str(e))
 
 def use_command(command : str):
+
     subprocess.run(command.split(), capture_output=True)
     output = subprocess.check_output(command)
     return unquote(output)
