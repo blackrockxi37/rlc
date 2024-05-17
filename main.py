@@ -23,7 +23,7 @@ def _ (message):
         if 'wwwatch' in command:
             split = command.split()
             if len(split) < 2: sm('watch <имя файла.mkv>'); return 
-            if '.mkv' not in split[1]: sm('watch <имя файла.mkv>'); return 
+            if '.mkv' not in ' '.join(split[1:]): sm('watch <имя файла.mkv>'); return 
             mkvname = ' '.join(split[1:])
             lsList = use_command('ls')
             if mkvname not in lsList: sm('File not found.'); return
