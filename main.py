@@ -25,7 +25,8 @@ def _ (message):
         sendme = 'sendme'
         if sendme in command:
             print(sendme, '- detected.')
-            mkvname = command.replace(f'{sendme} ', '')
+            command.replace(f'{sendme} ', '')
+            mkvname = command
             if mkvname == sendme or mkvname == '':
                 result = use_command('ls | grep .mkv')
                 sm(result)
