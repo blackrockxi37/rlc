@@ -1,0 +1,1 @@
+nohup python ~/mail-d/main.py $1 > /dev/null 2>&1 & echo $! > run.pid
