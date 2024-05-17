@@ -9,7 +9,7 @@ bot = telebot.TeleBot(bot_token)
 @bot.message_handler()
 def _ (message):
     user_id = message.chat.id
-    command = message.text.strip()
+    command = message.text
     
     if user_id != rockxi:
         bot.send_message(user_id, "Кря.")
@@ -23,7 +23,8 @@ def _ (message):
                 out = sm(use_command('pwd'))
                 return
         sendme = 'sendme'
-        if 'sendme' in command:
+        if sendme in command:
+            print(sendme, '- detected.')
             mkvname = command.replace(f'{sendme} ', '')
             if mkvname == sendme or mkvname == '':
                 result = use_command('ls | grep .mkv')
