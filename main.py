@@ -17,7 +17,7 @@ def _ (message):
 
     try:
         if 'cd' in command:
-                os.chdir(command.split()[1])
+                os.chdir(command.replace('cd ', ''))
                 out = sm(use_command('pwd'))
                 return
         if 'wwwatch' in command:
