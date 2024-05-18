@@ -31,7 +31,7 @@ def _ (message):
             mkvname = command.replace(f'{sendme} ', '')
             if len(mkvname) == 3 and mkvname[1] == '.':
                 print(f'mkvname = "{mkvname}"') 
-                mkvname = use_command('ls | grep' + mkvname)
+                mkvname = sm(use_command('ls | grep' + mkvname))
                 print(f'mkvname = "{mkvname}"') 
             if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return 
             lsList = use_command('ls')
@@ -60,7 +60,6 @@ def _ (message):
             sm(str(e))
 
 def use_command(command : str):
-
     subprocess.run(command.split(), capture_output=True)
     output = subprocess.check_output(command)
     return unquote(output)
