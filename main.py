@@ -23,7 +23,8 @@ def _ (message):
                 out = sm(use_command('pwd'))
                 return
         if command == 'course':
-            os.chdir('~/storage/movies/1ML')
+            os.chdir('/data/data/com.termux/files/home/storage/movies')
+            sm(use_command('pwd'))
             return
         sendme = 'sendme'
         if sendme in command:
