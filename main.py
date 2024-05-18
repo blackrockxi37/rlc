@@ -22,6 +22,9 @@ def _ (message):
                 os.chdir(path)
                 out = sm(use_command('pwd'))
                 return
+        if command == 'course':
+            os.chdir('~/storage/movies/1ML')
+            return
         sendme = 'sendme'
         if sendme in command:
             print(sendme, '- detected.')
