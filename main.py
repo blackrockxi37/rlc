@@ -28,21 +28,13 @@ def _ (message):
             return
         sendme = 'sendme'
         if sendme in command:
-            print(sendme, '- detected.')
             mkvname = command.replace(f'{sendme} ', '')
-            print(2)
-            if mkvname == sendme or mkvname == '':
-                result = use_command('ls | grep .mkv')
-                sm(result)
-                return
-            print(3)
+            if len(mkvname) == 3:
+                mkvname = use_command('ls | grep' + mkvname) 
             if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return 
-            print(4)
             lsList = use_command('ls')
             if sendme in mkvname: mkvname.replect(sendme + ' ', '')
-            print(f'"{mkvname}"', type(lsList))
             if mkvname not in lsList: sm('File not found.'); return
-            print(f'"{mkvname}"')
             f = open(mkvname, 'rb')
             print('sending...')
             bot.send_document(rockxi, f, timeout=200)
