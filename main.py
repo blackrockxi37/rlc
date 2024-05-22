@@ -35,12 +35,14 @@ def _ (message):
             if len(mkvname) == 3 and mkvname[1] == '.':
                 mkvname = sm(use_command_os('ls | grep ' + mkvname))
                 print(f'mkvname = "{mkvname}"')
-            if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return 
+            if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return
+            print(1, mkvname)
             lsList = use_command_os('ls')
             if sendme in mkvname: mkvname.replect(sendme + ' ', '')
             if mkvname not in lsList: sm('File not found.'); return
-            print(mkvname)
+            print(2, mkvname)
             f = open(mkvname, 'rb')
+            print(3, f"{mkvname}")
             print('sending...')
             bot.send_document(rockxi, f, timeout=200)
             print('sended')
