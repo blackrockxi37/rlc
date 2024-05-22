@@ -29,14 +29,14 @@ def _ (message):
         sendme = 'sendme'
         if sendme in command:
             if sendme == command:
-                sm(use_command('ls | grep mkv'))
+                sm(use_command_os('ls | grep mkv'))
                 return
             mkvname = command.replace(f'{sendme} ', '')
             if len(mkvname) == 3 and mkvname[1] == '.':
-                mkvname = sm(use_command('ls | grep ' + mkvname))
+                mkvname = sm(use_command_os('ls | grep ' + mkvname))
                 print(f'mkvname = "{mkvname}"')
             if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return 
-            lsList = use_command('ls')
+            lsList = use_command_os('ls')
             if sendme in mkvname: mkvname.replect(sendme + ' ', '')
             if mkvname not in lsList: sm('File not found.'); return
             f = open(mkvname, 'rb')
@@ -61,10 +61,18 @@ def _ (message):
             print(e)
             sm(str(e))
 
-def use_command(command : str):
+def use_command(command : str) -> str:
     subprocess.run(command.split(), capture_output=True)
     output = subprocess.check_output(command)
     return unquote(output)
+
+def use_command_os(command : str) -> str:
+    os.system(command)
+    out = os.popen(command).read()
+    if not out:
+        out = '-> empty string <-'
+    return out
+
 
 def sm(message):
     bot.send_message(rockxi, message)
