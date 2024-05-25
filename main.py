@@ -6,6 +6,10 @@ from urllib.parse import unquote
 
 bot = telebot.TeleBot(bot_token)
 
+@bot.message_handler(commands=['sendme'])
+def _(message):
+    sm('123')
+
 @bot.message_handler()
 def _ (message):
     user_id = message.chat.id
@@ -87,7 +91,7 @@ def link_generator():
     print(ls, type(ls))
     ls = ls.splitlines()
     print(ls, type(ls))
-    ls = map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme%20{x})', ls)
+    ls = map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme+{x})', ls)
     print(ls, type(ls))
     ls = '\n'.join(ls)
     print(ls, type(ls))
