@@ -78,12 +78,12 @@ def use_command_os(command : str) -> str:
 
 
 def sm(message):
-    bot.send_message(rockxi, message, parse_mode='html')
+    bot.send_message(rockxi, message, parse_mode='Markdown')
     return message
 
 def link_generator():
     ls = use_command_os('ls | grep mkv')
-    ls = ls.map(lambda x : f'<a href = "https://t.me/remote_rcl_bot?start=sendme">{x}</a>')
+    ls = ls.map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme)')
     print(ls)
     sm(ls)
 
