@@ -30,6 +30,7 @@ def _ (message):
         if sendme in command:
             if sendme == command:
                 link_generator()
+                print('work')
                 return
             mkvname = command.replace(f'{sendme} ', '')
             if len(mkvname) == 3 and mkvname[1] == '.':
@@ -83,7 +84,7 @@ def sm(message):
 
 def link_generator():
     ls = use_command_os('ls | grep mkv')
-    ls = ls.map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme)')
+    ls = ls.map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme%20{x})')
     print(ls)
     sm(ls)
 
