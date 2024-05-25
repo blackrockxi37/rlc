@@ -85,7 +85,7 @@ def sm(message):
 def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls = ls.map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme%20{x})')
-    print(ls)
+    print(['files'] + ls)
     sm(ls)
 
 bot.infinity_polling(20, True)
