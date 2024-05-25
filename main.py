@@ -29,7 +29,7 @@ def _ (message):
         sendme = 'sendme'
         if sendme in command:
             if sendme == command:
-                sm(use_command_os('ls | grep mkv'))
+                link_generator()
                 return
             mkvname = command.replace(f'{sendme} ', '')
             if len(mkvname) == 3 and mkvname[1] == '.':
@@ -85,6 +85,6 @@ def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls.map(lambda x : f'<a href = "https://t.me/remote_rcl_bot?start=sendme>{x}</a>')
     print(ls)
-    sm()
+    sm(ls)
 
 bot.infinity_polling(20, True)
