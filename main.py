@@ -78,7 +78,13 @@ def use_command_os(command : str) -> str:
 
 
 def sm(message):
-    bot.send_message(rockxi, message)
+    bot.send_message(rockxi, message, parse_mode='html')
     return message
+
+def link_generator():
+    ls = use_command_os('ls | grep mkv')
+    ls.map(lambda x : f'<a href = "https://t.me/remote_rcl_bot?start=sendme>{x}</a>')
+    print(ls)
+    sm()
 
 bot.infinity_polling(20, True)
