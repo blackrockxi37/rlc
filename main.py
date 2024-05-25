@@ -83,7 +83,7 @@ def sm(message):
 
 def link_generator():
     ls = use_command_os('ls | grep mkv')
-    ls.map(lambda x : f'<a href = "https://t.me/remote_rcl_bot?start=sendme>{x}</a>')
+    ls.map(lambda x : f'<a href = "https://t.me/remote_rcl_bot?start=sendme">{x}</a>')
     print(ls)
     sm(ls)
 
