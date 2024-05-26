@@ -15,9 +15,11 @@ def _ (call):
         mkvnum = call.data.replace('sendme ', '')
         path = mkvnum.split()[1]
         mkvnum = mkvnum.split()[0]
+        print('path = ', path)
         current_path = use_command_os('pwd')
         if path not in current_path:
             os.chdir('/data/data/com.termux/files/home/storage/movies' + path)
+            
         ls = use_command_os('ls | grep mkv')
         ls = ls.splitlines()
         mkvname = ls[0]
