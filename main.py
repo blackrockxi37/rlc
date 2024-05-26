@@ -110,6 +110,7 @@ def link_generator():
     ls = ls.splitlines()
     keyboard = types.InlineKeyboardMarkup()
     path = use_command_os()
+    print(0)
     if '/storage/emulated/0/Movies' in path:
         path = path.replace('/storage/emulated/0/Movies', '')
     for i in ls:
@@ -117,6 +118,7 @@ def link_generator():
         calldata = i.split()[0]
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata} {path}'))
     ls = '\n'.join(ls)
+    print(1)
     bot.send_message(chat_id=rockxi, text='Выберете файл:', reply_markup=keyboard)
 
 
