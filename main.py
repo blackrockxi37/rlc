@@ -11,26 +11,29 @@ bot = telebot.TeleBot(bot_token)
 
 @bot.callback_query_handler(func = lambda call: True)
 def _ (call):
-    if 'sendme' in call.data:
-        mkvnum = call.data.replace('sendme ', '')
-        path = mkvnum.split()[1]
-        mkvnum = mkvnum.split()[0]
-        print('path = ', path)
-        current_path = use_command_os('pwd')
-        if path not in current_path:
-            os.chdir('/data/data/com.termux/files/home/storage/movies/' + path)
-        ls = use_command_os('ls | grep mkv')
-        ls = ls.splitlines()
-        mkvname = ls[0]
-        for i in ls:
-            if mkvnum in i:
-                mkvname = i
-                break
-        f = open(mkvname, 'rb')
-        print('sending...')
-        bot.send_document(rockxi, f, timeout=200)
-        print('sended')
-        return
+    try:
+        if 'sendme' in call.data:
+            mkvnum = call.data.replace('sendme ', '')
+            path = mkvnum.split()[1]
+            mkvnum = mkvnum.split()[0]
+            print('path = ', path)
+            current_path = use_command_os('pwd')
+            if path not in current_path:
+                os.chdir('/data/data/com.termux/files/home/storage/movies/' + path)
+            ls = use_command_os('ls | grep mkv')
+            ls = ls.splitlines()
+            mkvname = ls[0]
+            for i in ls:
+                if mkvnum in i:
+                    mkvname = i
+                    break
+            f = open(mkvname, 'rb')
+            print('sending...')
+            bot.send_document(rockxi, f, timeout=200)
+            print('sended')
+            return
+    except Exception as e:
+        sm(str(e))
 
 
 @bot.message_handler()
@@ -46,6 +49,8 @@ def _ (message):
         if 'cd' in command:
                 path = command.replace('cd ', '')
                 print(command)
+                if path == '~':
+                    os.chdir('/data/data/com.termux/files/home')
                 os.chdir(path)
                 out = sm(use_command('pwd'))
                 return
