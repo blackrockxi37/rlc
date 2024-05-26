@@ -59,13 +59,10 @@ def _ (message):
                 mkvname = sm(use_command_os('ls | grep ' + mkvname))
                 print(f'mkvname = "{mkvname}"')
             if '.mkv' not in mkvname: sm(f'{sendme} <имя файла.mkv>'); return
-            print(1, mkvname)
             lsList = use_command_os('ls')
             if sendme in mkvname: mkvname.replect(sendme + ' ', '')
             if mkvname not in lsList: sm('File not found.'); return
-            print(2, mkvname)
             f = open(mkvname, 'rb')
-            print(3, f"{mkvname}")
             print('sending...')
             bot.send_document(rockxi, f, timeout=200)
             print('sended')
@@ -110,6 +107,7 @@ def link_generator():
     ls = ls.splitlines()
     keyboard = types.InlineKeyboardMarkup()
     for i in ls:
+        calldata = i.split()[0]
         calldata = i.split()[0]
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata}'))
     ls = '\n'.join(ls)
