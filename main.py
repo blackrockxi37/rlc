@@ -112,7 +112,7 @@ def link_generator():
     ls = '\n'.join(ls)
     print('lg5' + str(keyboard))
     try:
-        bot.send_message(chatid= rockxi, text='Выберите файл:', reply_markup=keyboard)
+        bot.send_message(chat_id=rockxi, text='Выберите файл:', reply_markup=keyboard)
     except Exception as e:
         print(str(e))
     print('lg6')
