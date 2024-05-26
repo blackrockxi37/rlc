@@ -12,8 +12,16 @@ bot = telebot.TeleBot(bot_token)
 @bot.callback_query_handler(func = lambda call: True)
 def _ (call):
     if 'sendme' in call.data:
-        mkvname = call.data.replace('sendme ', '')
-        print(f'7:"{mkvname}"')
+        mkvnum = call.data.replace('sendme ', '')
+        ls = use_command_os('ls | grep mkv')
+        ls = ls.splitlines()
+        mkvname = ls[0]
+
+        for i in ls:
+            if mkvnum in i:
+                mkvname = i
+                break
+        
         f = open(mkvname, 'rb')
         print('sending...')
         bot.send_document(rockxi, f, timeout=200)
@@ -99,22 +107,15 @@ def sm(message):
 #wtf
 def link_generator():
     ls = use_command_os('ls | grep mkv')
-    print('lg1')
     ls = ls.splitlines()
-    print('lg2')
     keyboard = types.InlineKeyboardMarkup()
-    print('lg3')
     for i in ls:
         calldata = i.split()[0]
         print(calldata)
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata}'))
-    print('lg4')
     ls = '\n'.join(ls)
-    print('lg5' + str(keyboard))
-    try:
-        bot.send_message(chat_id=rockxi, text='Выберите файл:', reply_markup=keyboard)
-    except Exception as e:
-        print(str(e))
-    print('lg6')
+    bot.send_message(chat_id=rockxi, text='Выберите файл:', reply_markup=keyboard)
 
+
+#pollingpollingpollingpollingpollingpollingpollingpollingpollingpollingpollingpollingpollingpolling
 bot.infinity_polling(20, True)
