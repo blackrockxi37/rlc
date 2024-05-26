@@ -91,7 +91,7 @@ def link_generator():
     print(ls, type(ls))
     ls = ls.splitlines()
     print(ls, type(ls))
-    ls = map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?start=sendme+{x})', ls)
+    ls = map(lambda x : f'[{x}]({x})', ls)
     print(ls, type(ls))
     ls = '\n'.join(ls)
     print(ls, type(ls))
