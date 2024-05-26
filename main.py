@@ -111,7 +111,10 @@ def link_generator():
     print('lg4')
     ls = '\n'.join(ls)
     print('lg5' + str(keyboard))
-    bot.send_message(chatid= rockxi, text='Выберите файл:', reply_markup=keyboard)
+    try:
+        bot.send_message(chatid= rockxi, text='Выберите файл:', reply_markup=keyboard)
+    except Exception as e:
+        print(str(e))
     print('lg6')
 
 bot.infinity_polling(20, True)
