@@ -106,6 +106,7 @@ def link_generator():
     print('lg3')
     for i in ls:
         calldata = i.split()[1]
+        print(calldata)
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata}'))
     print('lg4')
     ls = '\n'.join(ls)
