@@ -93,7 +93,7 @@ def use_command_os(command : str) -> str:
 
 
 def sm(message):
-    bot.send_message(rockxi, message, parse_mode='Markdown')
+    bot.send_message(rockxi, message)
     return message
 
 #wtf
