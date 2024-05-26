@@ -7,7 +7,7 @@ from telebot import types
 
 
 bot = telebot.TeleBot(bot_token)
-
+msid = 0
 
 @bot.callback_query_handler(func = lambda call: True)
 def _ (call):
@@ -29,7 +29,9 @@ def _ (call):
                     break
             f = open(mkvname, 'rb')
             print('sending...')
+            msid = bot.send_message('Отправляю...')
             bot.send_document(rockxi, f, timeout=200)
+            bot.delete_message(chat_id=rockxi, message_id=msid)
             print('sended')
             return
     except Exception as e:
