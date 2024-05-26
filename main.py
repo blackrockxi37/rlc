@@ -111,7 +111,6 @@ def link_generator():
     keyboard = types.InlineKeyboardMarkup()
     for i in ls:
         calldata = i.split()[0]
-        print(calldata)
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata}'))
     ls = '\n'.join(ls)
     bot.send_message(chat_id=rockxi, text='Выберите файл:', reply_markup=keyboard)
