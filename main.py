@@ -13,15 +13,18 @@ bot = telebot.TeleBot(bot_token)
 def _ (call):
     if 'sendme' in call.data:
         mkvnum = call.data.replace('sendme ', '')
+        path = mkvnum.split()[1]
+        mkvnum = mkvnum.split()[0]
+        current_path = use_command_os('pwd')
+        if path not in current_path:
+            os.chdir('/data/data/com.termux/files/home/storage/movies' + path)
         ls = use_command_os('ls | grep mkv')
         ls = ls.splitlines()
         mkvname = ls[0]
-
         for i in ls:
             if mkvnum in i:
                 mkvname = i
                 break
-        
         f = open(mkvname, 'rb')
         print('sending...')
         bot.send_document(rockxi, f, timeout=200)
@@ -106,9 +109,11 @@ def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls = ls.splitlines()
     keyboard = types.InlineKeyboardMarkup()
+    path = use_command_os('pwd')
+    if '/data/data/com.termux/files/home/storage/movies' in path: path = path.replace('/data/data/com.termux/files/home/storage/movies', '')
     for i in ls:
         calldata = i.split()[0]
-        keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata}'))
+        keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata} {path}'))
     ls = '\n'.join(ls)
     bot.send_message(chat_id=rockxi, text='Выберите файл:', reply_markup=keyboard)
 
