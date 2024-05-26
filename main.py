@@ -112,7 +112,7 @@ def link_generator():
     ls = ls.splitlines()
     keyboard = types.InlineKeyboardMarkup()
     path = use_command_os('pwd')
-    if '/data/data/com.termux/files/home/storage/movies' in path: path = path.replace('/data/data/com.termux/files/home/storage/movies', '')
+    path = path.replace('/storage/emulated/0/Movies/', '')
     for i in ls:
         calldata = i.split()[0]
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {calldata} {path}'))
