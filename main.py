@@ -85,7 +85,7 @@ def use_command_os(command : str) -> str:
 def sm(message):
     bot.send_message(rockxi, message, parse_mode='Markdown')
     return message
-
+#wtf
 def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls = ls.splitlines()
