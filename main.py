@@ -13,7 +13,7 @@ bot = telebot.TeleBot(bot_token)
 def _ (call):
     if 'sendme' in call.data:
         mkvname = call.data.replace('sendme ', '')
-        print(f'1:"{mkvname}"')
+        print(f'7:"{mkvname}"')
         f = open(mkvname, 'rb')
         print('sending...')
         bot.send_document(rockxi, f, timeout=200)
@@ -45,7 +45,6 @@ def _ (message):
         if sendme in command:
             if sendme == command:
                 link_generator()
-                print('work')
                 return
             mkvname = command.replace(f'{sendme} ', '')
             if len(mkvname) == 3 and mkvname[1] == '.':
@@ -100,11 +99,17 @@ def sm(message):
 #wtf
 def link_generator():
     ls = use_command_os('ls | grep mkv')
+    print('lg1')
     ls = ls.splitlines()
+    print('lg2')
     keyboard = types.InlineKeyboardMarkup()
+    print('lg3')
     for i in ls:
         keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {i}'))
+    print('lg4')
     ls = '\n'.join(ls)
+    print('lg5')
     bot.send_message(rockxi, 'Выберите файл:', reply_markup=keyboard)
+    print('lg6')
 
 bot.infinity_polling(20, True)
