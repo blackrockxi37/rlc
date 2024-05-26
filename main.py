@@ -24,7 +24,7 @@ def _ (call):
             ls = ls.splitlines()
             mkvname = ls[0]
             for i in ls:
-                if mkvnum in i:
+                if mkvnum in i and i.split()[0] == mkvname:
                     mkvname = i
                     break
             f = open(mkvname, 'rb')
