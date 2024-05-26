@@ -13,6 +13,7 @@ bot = telebot.TeleBot(bot_token)
 def _ (call):
     if 'sendme' in call.data:
         mkvname = call.data.replace('sendme ', '')
+        print(f'1:"{mkvname}"')
         f = open(mkvname, 'rb')
         print('sending...')
         bot.send_document(rockxi, f, timeout=200)
