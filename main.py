@@ -29,7 +29,7 @@ def _ (call):
                     break
             f = open(mkvname, 'rb')
             print('sending...')
-            msid = bot.send_message('Отправляю...')
+            msid = bot.send_message(rockxi, 'Отправляю...')
             bot.send_document(rockxi, f, timeout=200)
             bot.delete_message(chat_id=rockxi, message_id=msid)
             print('sended')
