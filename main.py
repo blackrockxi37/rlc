@@ -88,13 +88,9 @@ def sm(message):
 
 def link_generator():
     ls = use_command_os('ls | grep mkv')
-    print(ls, type(ls))
     ls = ls.splitlines()
-    print(ls, type(ls))
     ls = map(lambda x : f'[{x}]({x})', ls)
-    print(ls, type(ls))
     ls = '\n'.join(ls)
-    print(ls, type(ls))
     sm(ls)
 
 bot.infinity_polling(20, True)
