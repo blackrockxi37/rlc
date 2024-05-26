@@ -114,7 +114,7 @@ def sm(message):
 def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls = ls.splitlines()
-    keyboard = types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup(row_width=2)
     path = use_command_os('pwd')
     path = path.replace('/storage/emulated/0/Movies/', '')
     for i in ls:
