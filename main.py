@@ -3,12 +3,22 @@ import telebot
 import os
 import subprocess
 from urllib.parse import unquote
+from telebot import types
+
 
 bot = telebot.TeleBot(bot_token)
 
-@bot.message_handler(commands=['sendme'])
-def _(message):
-    sm('123')
+
+@bot.callback_query_handler(func = lambda call: True)
+def _ (call):
+    if 'sendme' in call.data:
+        mkvname = call.data.replace('sendme ', '')
+        f = open(mkvname, 'rb')
+        print('sending...')
+        bot.send_document(rockxi, f, timeout=200)
+        print('sended')
+        return
+
 
 @bot.message_handler()
 def _ (message):
@@ -85,12 +95,15 @@ def use_command_os(command : str) -> str:
 def sm(message):
     bot.send_message(rockxi, message, parse_mode='Markdown')
     return message
+
 #wtf
 def link_generator():
     ls = use_command_os('ls | grep mkv')
     ls = ls.splitlines()
-    ls = map(lambda x : f'[{x}](https://t.me/remote_rcl_bot?{x}/)', ls)
+    keyboard = types.InlineKeyboardMarkup()
+    for i in ls:
+        keyboard.add(types.InlineKeyboardButton(text = i, callback_data=f'sendme {i}'))
     ls = '\n'.join(ls)
-    sm(ls)
+    bot.send_message(rockxi, 'Выберите файл:', reply_markup=keyboard)
 
 bot.infinity_polling(20, True)
