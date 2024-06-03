@@ -30,7 +30,7 @@ def _ (call):
             f = open(mkvname, 'rb')
             print('sending...')
             msid = bot.send_message(rockxi, 'Отправляю...').message_id
-            bot.send_document(rockxi, f, timeout=200)
+            bot.send_video(rockxi, f, timeout=200)
             bot.delete_message(chat_id=rockxi, message_id=msid)
             print('sended')
             return
@@ -75,7 +75,7 @@ def _ (message):
             if mkvname not in lsList: sm('File not found.'); return
             f = open(mkvname, 'rb')
             print('sending...')
-            bot.send_video(rockxi, f, timeout=200)
+            bot.send_document(rockxi, f, timeout=200)
             print('sended')
             return
         result = use_command(command)
