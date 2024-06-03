@@ -75,7 +75,7 @@ def _ (message):
             if mkvname not in lsList: sm('File not found.'); return
             f = open(mkvname, 'rb')
             print('sending...')
-            bot.send_document(rockxi, f, timeout=200)
+            bot.send_video(rockxi, f, timeout=200)
             print('sended')
             return
         result = use_command(command)
