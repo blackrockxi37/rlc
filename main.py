@@ -1,3 +1,4 @@
+from imaplib import Commands
 from tokens import *
 import telebot
 import os
@@ -41,7 +42,7 @@ def _ (call):
     except Exception as e:
         sm(str(e))
 
-@bot.message_handler(commands==['file'])
+@bot.message_handler(commands=['file'])
 def _(message):
     if message.chat.id != rockxi: return
     global flag
