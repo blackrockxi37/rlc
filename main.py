@@ -54,7 +54,7 @@ def _ (message):
         return
     
     if command == 'file':
-        flag = not flag
+        flag = True
         print(f'Флаг переключен на {flag}')
         sm(f'Флаг переключен на {flag}')
         return
