@@ -53,7 +53,7 @@ def _ (message):
         bot.send_message(user_id, "Кря.")
         return
     
-    if command == '/file':
+    if command == 'file':
         flag = not flag
         print(f'Флаг переключен на {flag}')
         sm(f'Флаг переключен на {flag}')
