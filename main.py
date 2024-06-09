@@ -42,21 +42,21 @@ def _ (call):
     except Exception as e:
         sm(str(e))
 
-@bot.message_handler(commands=['file'])
-def _(message):
-    if message.chat.id != rockxi: return
-    global flag
-    flag = not flag
-    print(f'Флаг переключен на {flag}')
-    sm(f'Флаг переключен на {flag}')
 
 @bot.message_handler()
 def _ (message):
     user_id = message.chat.id
     command = message.text
-    
+    global flag
+
     if user_id != rockxi:
         bot.send_message(user_id, "Кря.")
+        return
+    
+    if command == '/file':
+        flag = not flag
+        print(f'Флаг переключен на {flag}')
+        sm(f'Флаг переключен на {flag}')
         return
 
     try:
